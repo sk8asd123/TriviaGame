@@ -3,35 +3,89 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title></title>
+        <title>Trivia Game</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <link rel="manifest" href="src/site.webmanifest">
-        <link rel="apple-touch-icon" href="src/icon.png">
-        <!-- Place favicon.ico in the root directory -->
+        <link rel="shortcut icon" href="favicon.ico">
 
-        <link rel="stylesheet" href="css/normalize.css">
         <link rel="stylesheet" href="src/css/main.css">
     </head>
-    <body>
-        <!--[if lte IE 9]>
-            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
-        <![endif]-->
+        <body>
+            <!--[if lte IE 9]>
+                <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+            <![endif]-->
 
-        <!-- Add your site or application content here -->
-        <p>Hello world! This is HTML5 Boilerplate.</p>
-        <script src="js/vendor/modernizr-{{MODERNIZR_VERSION}}.min.js"></script>
-        <script src="https://code.jquery.com/jquery-{{JQUERY_VERSION}}.min.js" integrity="{{JQUERY_SRI_HASH}}" crossorigin="anonymous"></script>
-        <script>window.jQuery || document.write('<script src="js/vendor/jquery-{{JQUERY_VERSION}}.min.js"><\/script>')</script>
-        <script src="src/js/plugins.js"></script>
-        <script src="src/js/main.js"></script>
+            <!-- Added link to the jQuery Library - put before js files -->
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-        <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
-        <script>
-            window.ga=function(){ga.q.push(arguments)};ga.q=[];ga.l=+new Date;
-            ga('create','UA-XXXXX-Y','auto');ga('send','pageview')
-        </script>
-        <script src="https://www.google-analytics.com/analytics.js" async defer></script>
-    </body>
+            <!-- Add your site or application content here -->
+            <script src="src/js/plugins.js"></script>
+            <script src="src/js/main.js"></script>
+
+            <meta charset="UTF-8">
+            <title>Number Checker</title>
+
+            <!-- Added a link to Bootstrap-->
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+
+            <!-- Bootstrap Container will hold everything. -->
+            <div class='container'>
+
+                <!-- Jumbotron holds the title section. -->
+                <div class='jumbotron'>
+                    <div class='container'>
+                        <h1>Math Quiz Time</h1>
+                        <h2>How many can you solve?</h2>
+                        <button type="button" class="btn btn-primary" onclick="startGame()">Start Game</button>
+                    </div>
+                </div>
+
+
+                <!-- Panels are being used to hold various sections. -->
+                <div class='row'>
+                    <div class='col-lg-12'>
+
+                        <!-- First Panel -->
+                        <div class='panel panel-default'>
+                            <div class='panel-heading'>
+                                <h3 class='panel-title'><strong>Problem</strong></h3>
+                            </div>
+
+                            <div class='panel-body'>
+                                <h3 id='problem'></h3>
+                            </div>
+                        </div>
+
+                        <!-- Second Panel -->
+                        <div class='panel panel-default'>
+                            <div class='panel-heading'>
+                                <h3 class='panel-title'><strong>Answer</strong></h3>
+                            </div>
+
+                            <div class='panel-body'>
+                                <input type=”text” id="answer_input" onkeypress="getInput(event, this)" placeholder="">
+                            </div>
+                        </div>
+
+                        <!-- Third Panel -->
+                        <div class='panel panel-default'>
+                            <div class='panel-heading'>
+                                <h3 class='panel-title'><strong>Time</strong></h3>
+                            </div>
+
+                            <div class='panel-body'>
+                                <h3 id='a_time'>x</h3>
+                            </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Adds a link to the JavaScript file. Loaded at the bottom so it waits for the HTML content to display first. If you put this at the top it will crash, because the HTML IDs won't exist yet.-->
+            <script src='src/js/main.js'></script>
+
+        </body>
+
 </html>
