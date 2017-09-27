@@ -28,7 +28,9 @@
             <title>Number Checker</title>
 
             <!-- Added a link to Bootstrap-->
-            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 
             <!-- Bootstrap Container will hold everything. -->
@@ -40,8 +42,22 @@
                         <h1>Math Quiz Time</h1>
                         <h2>How many can you solve?</h2>
                         <button type="button" class="btn btn-primary" onclick="startGame()">Start Game</button>
+                        <br></br>
                     </div>
-                </div>
+
+                        <div class="dropdown">
+                            <button class="btn btn-primary dropdown-toggle" id="menu1" type="button"
+                                    data-toggle="dropdown">Maximum Number Used in Problem
+                                <span class="caret"></span></button>
+                            <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+                                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">10</a></li>
+                                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">100</a></li>
+                                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">1000</a></li>
+                            </ul>
+                        </div>
+                </div> <!-- jumbotron -->
+
+
 
 
                 <!-- Panels are being used to hold various sections. -->
@@ -62,17 +78,6 @@
                         <!-- Second Panel -->
                         <div class='panel panel-default'>
                             <div class='panel-heading'>
-                                <h3 class='panel-title'><strong>Answer</strong></h3>
-                            </div>
-
-                            <div class='panel-body'>
-                                <input type=”text” id="answer_input" onkeypress="getInput(event, this)" placeholder="">
-                            </div>
-                        </div>
-
-                        <!-- Third Panel -->
-                        <div class='panel panel-default'>
-                            <div class='panel-heading'>
                                 <h3 class='panel-title'><strong>Problem</strong></h3>
                             </div>
 
@@ -81,7 +86,31 @@
                             </div>
                         </div>
 
-                </div>
+
+                        <!-- Third Panel -->
+                        <div class='panel panel-default'>
+                            <div class='panel-heading'>
+                                <h3 class='panel-title'><strong>Your Answer</strong></h3>
+                            </div>
+
+                            <div class='panel-body'>
+                                <input type=”text” id="answer_input" onkeypress="getInput(event, this)" placeholder="">
+                            </div>
+                        </div>
+
+                        <!-- Fourth Panel -->
+                        <div class='panel panel-default'>
+                            <div class='panel-heading'>
+                                <h3 class='panel-title'><strong>Missed Questions to Practice</strong></h3>
+                            </div>
+                            <div class='panel-body'>
+                                <h5 id='incorrect'></h5>
+                            </div>
+                        </div>
+
+
+
+                    </div>
             </div>
 
             <!-- Adds a link to the JavaScript file. Loaded at the bottom so it waits for the HTML content to display first. If you put this at the top it will crash, because the HTML IDs won't exist yet.-->

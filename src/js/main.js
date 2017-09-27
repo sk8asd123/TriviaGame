@@ -5,17 +5,19 @@ function random(maxNumber) {
 }
 
 var answer;
+var firstNumber;
+var secondNumber;
 var continueGame = true;
 var correct = 0;
 var questions = 0;
+var percentage = 0;
+var level;
 
 function generateQuestion() {
     "use strict";
-    var firstNumber = random(10);
-    var secondNumber = random(10);
+    firstNumber = random(level);
+    secondNumber = random(level);
     answer = secondNumber + firstNumber;
-    console.log(firstNumber);
-    console.log(secondNumber);
     document.getElementById("problem").innerHTML = firstNumber + " + " + secondNumber + " = ";
 }
 function getInput() {
@@ -28,11 +30,8 @@ function getInput() {
         document.getElementById("answer_input").value = "";
         if (userInput == answer) {
             correct += 1;
-            console.log("correct");
         } else {
-            console.log("not correct");
-            console.log(userInput);
-            console.log(answer);
+            document.getElementById("incorrect").append(firstNumber + " + " + secondNumber + " = " + answer + "\n");
         }
         questions += 1;
         if (continueGame) {
@@ -41,6 +40,15 @@ function getInput() {
 
     }
 }
+
+//
+$(".dropdown-menu li a").click(function(){
+    var selText = $(this).text();
+    $(this).parents('.btn-group').find('.dropdown-toggle')
+        .html(selText+' <span class="caret"></span>');
+    level = selText;
+    console.log(level);
+});
 
 function timeConverter(t) {
     "use strict";
@@ -60,35 +68,48 @@ function timeConverter(t) {
     return minutes + ":" + seconds;
 }
 
+// reset variables and page elements
 function gameOver() {
     "use strict";
     continueGame = false;
     document.getElementById("answer_input").style.visibility = "hidden";
+    if (questions > 0) {
+        percentage = Math.round(correct / questions * 100, 2);
+    }
+
     document.getElementById("problem").innerHTML = "You got " + correct + " correct out of " + questions + "" +
-            " for a score of " + correct / questions * 100 + "%";
+            " for a score of " + percentage + "%";
+    continueGame = true;
+    correct = 0;
+    questions = 0;
+    percentage = 0;
 }
 
 function startGame() {
     "use strict";
-    document.getElementById("answer_input").style.visibility = "visible";
-    function createTimer(seconds) {
-        var intervalVar = setInterval(function () {
-            console.log("interval var");
-            console.log(seconds);
-            if (seconds === 0) {
-                clearInterval(intervalVar);
-                gameOver();
-            } else {
-                continueGame = true;
-            }
-            document.getElementById("a_time").innerHTML = timeConverter(seconds);
+    if (!level) {
+        alert("Please enter max number");
+    } else {
+        document.getElementById("answer_input").style.visibility = "visible";
+        document.getElementById("incorrect").innerHTML = "";
+        function createTimer(seconds) {
+            var intervalVar = setInterval(function () {
+                if (seconds === 0) {
+                    clearInterval(intervalVar);
+                    gameOver();
+                } else {
+                    continueGame = true;
+                }
+                document.getElementById("a_time").innerHTML = timeConverter(seconds);
 
-            seconds--;
-        }, 1000);
+                seconds--;
+            }, 1000);
+        }
+
+        createTimer(10);
+        generateQuestion();
     }
 
-    createTimer(10);
-    generateQuestion();
 }
 
 
