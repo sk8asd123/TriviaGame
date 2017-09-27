@@ -47,7 +47,6 @@ $(".dropdown-menu li a").click(function(){
     $(this).parents('.btn-group').find('.dropdown-toggle')
         .html(selText+' <span class="caret"></span>');
     level = selText;
-    console.log(level);
 });
 
 function timeConverter(t) {
@@ -71,7 +70,6 @@ function timeConverter(t) {
 // reset variables and page elements
 function gameOver() {
     "use strict";
-    continueGame = false;
     document.getElementById("answer_input").style.visibility = "hidden";
     if (questions > 0) {
         percentage = Math.round(correct / questions * 100, 2);
