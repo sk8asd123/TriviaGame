@@ -6,6 +6,8 @@ function random(maxNumber) {
 
 var answer;
 var continueGame = true;
+var correct = 0;
+var questions = 0;
 
 function generateQuestion() {
     "use strict";
@@ -24,14 +26,16 @@ function getInput() {
     if (code === 13) {
         // clears value for next input
         document.getElementById("answer_input").value = "";
-        if (userInput == (answer)) {
+        if (userInput == answer) {
+            correct += 1;
             console.log("correct");
         } else {
             console.log("not correct");
             console.log(userInput);
             console.log(answer);
         }
-        if (continueGame){
+        questions += 1;
+        if (continueGame) {
             generateQuestion();
         }
 
@@ -56,33 +60,29 @@ function timeConverter(t) {
     return minutes + ":" + seconds;
 }
 
+function gameOver() {
+    "use strict";
+    continueGame = false;
+    document.getElementById("answer_input").style.visibility = "hidden";
+    document.getElementById("problem").innerHTML = "You got " + correct + " correct out of " + questions + "" +
+            " for a score of " + correct / questions * 100 + "%";
+}
+
 function startGame() {
     "use strict";
-
+    document.getElementById("answer_input").style.visibility = "visible";
     function createTimer(seconds) {
         var intervalVar = setInterval(function () {
             console.log("interval var");
             console.log(seconds);
             if (seconds === 0) {
-
-
                 clearInterval(intervalVar);
-                console.log("time up");
-                document.getElementById("answer_input").style.visibility = "hidden";
-                continueGame = false;
-            }
-            else {
+                gameOver();
+            } else {
                 continueGame = true;
             }
-            console.log("testing time in log");
             document.getElementById("a_time").innerHTML = timeConverter(seconds);
 
-            // this.minutes = Math.floor(this.seconds / 60);
-            // this.secondsToShow = (this.seconds - this.minutes * 60).toString();
-            // if (this.secondsToShow.length === 1) {
-            //     this.secondsToShow = "0" + this.secondsToShow; // if the number of seconds is '5' for example, make sure that it is shown as '05'
-            // }
-            // this.seconds = this.seconds - 1;
             seconds--;
         }, 1000);
     }
