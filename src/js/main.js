@@ -12,13 +12,14 @@ var correct = 0;
 var questions = 0;
 var percentage = 0;
 var level;
+var operation = "+";
 
 function generateQuestion() {
     "use strict";
     firstNumber = random(level);
     secondNumber = random(level);
-    answer = secondNumber + firstNumber;
-    document.getElementById("problem").innerHTML = firstNumber + " + " + secondNumber + " = ";
+    answer = eval(firstNumber + operation + secondNumber);
+    document.getElementById("problem").innerHTML = firstNumber + operation + secondNumber + " = ";
 }
 function getInput() {
     "use strict";
@@ -31,7 +32,7 @@ function getInput() {
         if (userInput == answer) {
             correct += 1;
         } else {
-            document.getElementById("incorrect").append(firstNumber + " + " + secondNumber + " = " + answer + "\n");
+            document.getElementById("incorrect").append(firstNumber + operation + secondNumber + " = " + answer + "\n");
         }
         questions += 1;
         if (continueGame) {
@@ -40,8 +41,12 @@ function getInput() {
 
     }
 }
+// Decide which math operation will be in the problems. sum is default.
+$(".btn-group :input").change(function() {
+    operation = this.id; // points to the clicked input button
+});
 
-//
+//get max number that will appear in the math problems
 $(".dropdown-menu li a").click(function(){
     var selText = $(this).text();
     $(this).parents('.btn-group').find('.dropdown-toggle')
@@ -86,7 +91,7 @@ function gameOver() {
 function startGame() {
     "use strict";
     if (!level) {
-        alert("Please enter max number");
+        alert("Please select a max number");
     } else {
         document.getElementById("answer_input").style.visibility = "visible";
         document.getElementById("incorrect").innerHTML = "";
@@ -104,7 +109,7 @@ function startGame() {
             }, 1000);
         }
 
-        createTimer(10);
+        createTimer(60);
         generateQuestion();
     }
 
