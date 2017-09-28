@@ -13,11 +13,22 @@ var questions = 0;
 var percentage = 0;
 var level;
 var operation = "+";
+var operationButton;
+var allOperations = ['*', '-', '+'];
+
+
+function randomOperation() {
+    "use strict";
+    return allOperations[(Math.random() * allOperations.length) | 0];
+}
 
 function generateQuestion() {
     "use strict";
     firstNumber = random(level);
     secondNumber = random(level);
+    if (operationButton === "Random") {
+        operation = randomOperation();
+    }
     answer = eval(firstNumber + operation + secondNumber);
     document.getElementById("problem").innerHTML = firstNumber + operation + secondNumber + " = ";
 }
@@ -38,11 +49,12 @@ function getInput() {
         if (continueGame) {
             generateQuestion();
         }
-
     }
 }
+
 // Decide which math operation will be in the problems. sum is default.
 $(".btn-group :input").change(function() {
+    operationButton = this.id;
     operation = this.id; // points to the clicked input button
 });
 
