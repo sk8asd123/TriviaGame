@@ -55,6 +55,7 @@ function getInput() {
 // Decide which math operation will be in the problems. sum is default.
 $(".btn-group :input").change(function() {
     operationButton = this.id;
+    operationButton = this.id;
     operation = this.id; // points to the clicked input button
 });
 

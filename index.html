@@ -10,6 +10,7 @@
         <link rel="manifest" href="src/site.webmanifest">
         <link rel="shortcut icon" href="favicon.ico">
 
+        <!-- CSS Reference -->
         <link rel="stylesheet" href="src/css/main.css">
     </head>
         <body>
@@ -32,44 +33,51 @@
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
             <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
+            <!-- Google Font -->
+            <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700" rel="stylesheet" type="text/css">
+
 
             <!-- Bootstrap Container will hold everything. -->
             <div class='container'>
 
                 <!-- Jumbotron holds the title section. -->
-                <div class='jumbotron'>
-                    <div class='container'>
-                        <h1>Math Quiz Time</h1>
-                        <h2>How many can you solve in one minute?</h2>
-                        <button type="button" class="btn btn-primary" onclick="startGame()">Start Game</button>
-                        <br></br>
-                    </div>
-
-                        <div class="dropdown">
-                            <button class="btn btn-primary dropdown-toggle" id="menu1" type="button"
-                                    data-toggle="dropdown">Maximum Number Used in Problem
-                                <span class="caret"></span></button>
-                            <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
-                                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">10</a></li>
-                                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">100</a></li>
-                                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">1000</a></li>
-                            </ul>
+                <div class='jumbotron jumbotron-billboard'>
+                    <div class="img"></div>
+                        <div class='container'>
+                            <h1>Math Quiz Time</h1>
+                            <h2>How many can you solve in one minute?</h2>
                         </div>
 
-                    <br></br>
-                    <div id="myButtons" class="btn-group" data-toggle="buttons">
-                        <label class="btn btn-primary active">
-                            <input type="radio" name="options" id="+" autocomplete="off" checked>+
-                        </label>
-                        <label class="btn btn-primary">
-                            <input type="radio" name="options" id="-" autocomplete="off">-
-                        </label>
-                        <label class="btn btn-primary">
-                            <input type="radio" name="options" id="*" autocomplete="off">*
-                        </label>
-                        <label class="btn btn-primary">
-                            <input type="radio" name="options" id="Random" autocomplete="off">Random
-                        </label>
+                            <div class="dropdown">
+                                <button class="pull-left btn-primary dropdown-toggle btn" id="menu1" type="button"
+                                        data-toggle="dropdown">Maximum Number Used in Problem
+                                    <span class="caret"></span></button>
+                                <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">10</a></li>
+                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">100</a></li>
+                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">1000</a></li>
+                                </ul>
+                            </div>
+
+                        <div id="myButtons" class="btn-group pull-right" data-toggle="buttons">
+                            <label class="btn btn-primary active">
+                                <input type="radio" name="options" id="+" autocomplete="off" checked>+
+                            </label>
+                            <label class="btn btn-primary">
+                                <input type="radio" name="options" id="-" autocomplete="off">-
+                            </label>
+                            <label class="btn btn-primary">
+                                <input type="radio" name="options" id="*" autocomplete="off">*
+                            </label>
+                            <label class="btn btn-primary">
+                                <input type="radio" name="options" id="Random" autocomplete="off">Random
+                            </label>
+                        </div>
+
+                        <br></br>
+                        <div class="start-button">
+                            <button type="button" class="pull-left btn btn-primary" onclick="startGame()">Start Game</button>
+                        </div>
                     </div>
                 </div> <!-- jumbotron -->
 
@@ -82,8 +90,8 @@
 
                         <!-- First Panel -->
                         <div class='panel panel-default'>
-                            <div class='panel-heading'>
-                                <h3 class='panel-title'><strong>Time</strong></h3>
+                            <div class='panel-heading' id="mypanelId">
+                                <h3>Time</h3>
                             </div>
 
                             <div class='panel-body'>
@@ -93,8 +101,8 @@
 
                         <!-- Second Panel -->
                         <div class='panel panel-default'>
-                            <div class='panel-heading'>
-                                <h3 class='panel-title'><strong>Problem</strong></h3>
+                            <div class='panel-heading' id="mypanelId">
+                                <h3>Problem</h3>
                             </div>
 
                             <div class='panel-body'>
@@ -105,27 +113,25 @@
 
                         <!-- Third Panel -->
                         <div class='panel panel-default'>
-                            <div class='panel-heading'>
-                                <h3 class='panel-title'><strong>Your Answer</strong></h3>
+                            <div class='panel-heading' id="mypanelId">
+                                <h3>Your Answer</h3>
                             </div>
 
                             <div class='panel-body'>
-                                <input type=”text” id="answer_input" onkeypress="getInput(event, this)" placeholder="">
+                                <input type=”text” id="answer_input"
+                                       onkeypress="getInput(event, this)" placeholder="Press enter to submit">
                             </div>
                         </div>
 
                         <!-- Fourth Panel -->
                         <div class='panel panel-default'>
-                            <div class='panel-heading'>
-                                <h3 class='panel-title'><strong>Missed Questions to Practice</strong></h3>
+                            <div class='panel-heading' id="mypanelId">
+                                <h3>Missed Questions to Practice</h3>
                             </div>
                             <div class='panel-body'>
                                 <h3 id='incorrect'></h3>
                             </div>
                         </div>
-
-
-
                     </div>
             </div>
 

@@ -90,15 +90,25 @@ textarea {
    Author's custom styles
    ========================================================================== */
 
+.panel {
+    font-family: "Roboto Condensed", sans-serif;
+}
 
+#mypanelId{
+    background-image: none;
+    background: slategrey;
+    color: white;
+}
 
+.btn {
+    font-family: "Roboto Condensed", sans-serif;
+}
 
-
-
-
-
-
-
+.jumbotron .container {z-index:2;
+    position:relative;
+    z-index:2;
+    font-family: "Roboto Condensed", sans-serif;
+}
 
 
 
